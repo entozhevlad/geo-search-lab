@@ -10,16 +10,6 @@ public class NaiveGeoIndex {
         points.add(point);
     }
 
-    public List<GeoPoint> searchInBox(double minLat, double minLng, double maxLat, double maxLng) {
-        List<GeoPoint> result = new ArrayList<>();
-        for (GeoPoint point : points) {
-            if (point.lat >= minLat && point.lat <= maxLat && point.lng >= minLng && point.lng <= maxLng) {
-                result.add(point);
-            }
-        }
-        return result;
-    }
-
     public List<GeoPoint> searchInRadius(double lat, double lng, double radius) {
         List<GeoPoint> result = new ArrayList<>();
         double radiusSquared = radius * radius;
