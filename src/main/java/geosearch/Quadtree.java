@@ -4,26 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Quadtree {
-    public static final double WORLD_MIN_LAT = -90.0;
-    public static final double WORLD_MIN_LNG = -180.0;
-    public static final double WORLD_MAX_LAT = 90.0;
-    public static final double WORLD_MAX_LNG = 180.0;
-    public static final int DEFAULT_NODE_CAPACITY = 8;
+    private static final double WORLD_MIN_LAT = -90.0;
+    private static final double WORLD_MIN_LNG = -180.0;
+    private static final double WORLD_MAX_LAT = 90.0;
+    private static final double WORLD_MAX_LNG = 180.0;
+    private static final int NODE_CAPACITY = 8;
 
-    private final Node root;
+    private final Node root = new Node(WORLD_MIN_LAT, WORLD_MIN_LNG, WORLD_MAX_LAT, WORLD_MAX_LNG, NODE_CAPACITY);
     private int size;
-
-    public Quadtree() {
-        this(WORLD_MIN_LAT, WORLD_MIN_LNG, WORLD_MAX_LAT, WORLD_MAX_LNG, DEFAULT_NODE_CAPACITY);
-    }
-
-    public Quadtree(double minLat, double minLng, double maxLat, double maxLng, int nodeCapacity) {
-        this.root = new Node(minLat, minLng, maxLat, maxLng, nodeCapacity);
-    }
 
     public void insert(GeoPoint point) {
         if (!root.insert(point)) {
-            throw new IllegalArgumentException("Point is outside root bounds");
+            throw new IllegalArgumentException("Точка вне координат");
         }
         size++;
     }
