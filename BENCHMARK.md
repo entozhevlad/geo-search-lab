@@ -63,15 +63,3 @@
 | 1000000 | 0.1 | 59.1 | 508.4 | 8.60x |
 | 1000000 | 1.0 | 777.8 | 3331.7 | 4.28x |
 | 1000000 | 10.0 | 73220.5 | 227059.6 | 3.10x |
-
-## Flamegraph
-
-- поиск CPU, Quadtree: [quadtree-search-cpu.html](/Users/entozhevlad/labs/data_sctructures/geo_search/flamegraph/quadtree-search-cpu.html)
-- поиск память, Quadtree: [quadtree-search-alloc.html](/Users/entozhevlad/labs/data_sctructures/geo_search/flamegraph/quadtree-search-alloc.html)
-- построение CPU, Quadtree: [quadtree-build-cpu.html](/Users/entozhevlad/labs/data_sctructures/geo_search/flamegraph/quadtree-build-cpu.html)
-
-Коротко:
-
-- `quadtree-search-cpu.html` показывает горячие места CPU при поиске
-- `quadtree-search-alloc.html` показывает аллокации памяти при поиске
-- `quadtree-build-cpu.html` показывает горячие места CPU при построении
