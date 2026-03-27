@@ -18,7 +18,7 @@ public class Main {
         quadtree.insert(point4);
         quadtree.insert(point5);
 
-        System.out.println("Точки в дереве " + quadtree.size());
+        System.out.println("Точек в дереве " + quadtree.size());
         System.out.println();
 
         System.out.println("Точки в радиусе");
