@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import org.junit.jupiter.api.Test;
 
 class jertQuadtreeTest {
@@ -53,6 +54,29 @@ class jertQuadtreeTest {
 
         assertEquals(20, quadtree.size());
         assertEquals(20, quadtree.searchInRadius(10.0, 10.0, 0.0).size());
+    }
+
+    @Test
+    void randomizedSearchMatchesNaive() {
+        List<GeoPoint> points = RandomDataGenerator.generatePoints(2_000, 123L);
+        List<GeoPoint> queries = RandomDataGenerator.generatePoints(200, 456L);
+        Random random = new Random(789L);
+
+        Quadtree quadtree = new Quadtree();
+        NaiveGeoIndex naive = new NaiveGeoIndex();
+
+        for (GeoPoint point : points) {
+            quadtree.insert(point);
+            naive.insert(point);
+        }
+
+        for (GeoPoint query : queries) {
+            double radius = 0.1 + random.nextDouble() * 15.0;
+            assertEquals(
+                    sortedIds(naive.searchInRadius(query.lat, query.lng, radius)),
+                    sortedIds(quadtree.searchInRadius(query.lat, query.lng, radius))
+            );
+        }
     }
 
     private List<Long> sortedIds(List<GeoPoint> points) {
